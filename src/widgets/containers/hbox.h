@@ -2,7 +2,7 @@
 #define PTH_HBOX_H
 
 #include "../../widget.h"
-#include <list>
+#include "../container.h"
 
 /* * * * * * * * * * * * * * *
  * PTH hbox header           *
@@ -13,14 +13,10 @@
 using std::list;
 
 namespace pth {
-  class hbox : widget {
-  protected:
-    list<widget> widgets;
-    list<float> widget_weights;
-    float weights_total = 0;
+  class hbox : container {
 
   public:
-    void add_widget(widget w, float weight);
+    hbox(widget *parent);
     virtual void draw(int x, int y, int width, int height);
   };
 }

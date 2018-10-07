@@ -1,6 +1,6 @@
 #include "hbox.h"
+#include "../container.h"
 #include "../../widget.h"
-#include <list>
 
 /* * * * * * * * * * * * * * *
  * PTH hbox implementation   *
@@ -11,11 +11,8 @@
 using std::list;
 
 namespace pth {
-  void hbox::add_widget(widget w, float weight) {
-    widgets.push_back(w);
-    widget_weights.push_back(weight);
-    weights_total += weight;
-  }
+  hbox::hbox(widget *parent)
+    : container(parent, 0x55 /*Left Arrow*/, 0x56 /*Right Arrow*/) { }
 
   void hbox::draw(int x, int y, int width, int height) {
     float x_next = 0;

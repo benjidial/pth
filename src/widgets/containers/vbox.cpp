@@ -1,6 +1,6 @@
 #include "vbox.h"
+#include "../container.h"
 #include "../../widget.h"
-#include <list>
 
 /* * * * * * * * * * * * * * *
  * PTH vbox implementation   *
@@ -11,11 +11,8 @@
 using std::list;
 
 namespace pth {
-  void vbox::add_widget(widget w, float weight) {
-    widgets.push_back(w);
-    widget_weights.push_back(weight);
-    weights_total += weight;
-  }
+  vbox::vbox(widget *parent)
+    : container(parent, 0x53 /*Up Arrow*/, 0x58 /*Down Arrow*/) { }
 
   void vbox::draw(int x, int y, int width, int height) {
     float y_next = 0;
