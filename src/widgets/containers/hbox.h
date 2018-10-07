@@ -1,11 +1,11 @@
-#ifndef PTH_VBOX_H
-#define PTH_VBOX_H
+#ifndef PTH_HBOX_H
+#define PTH_HBOX_H
 
-#include "../widget.h"
+#include "../../widget.h"
 #include <list>
 
 /* * * * * * * * * * * * * * *
- * PTH containers/vbox.h     *
+ * PTH hbox header           *
  * Copyright 2018 Benji Dial *
  * Under MIT license         *
  * * * * * * * * * * * * * * */
@@ -13,7 +13,7 @@
 using std::list;
 
 namespace pth {
-  class vbox : widget {
+  class hbox : widget {
   protected:
     list<widget> widgets;
     list<float> widget_weights;

@@ -1,9 +1,9 @@
 #include "hbox.h"
-#include "../widget.h"
+#include "../../widget.h"
 #include <list>
 
 /* * * * * * * * * * * * * * *
- * PTH containers/hbox.cpp   *
+ * PTH hbox implementation   *
  * Copyright 2018 Benji Dial *
  * Under MIT license         *
  * * * * * * * * * * * * * * */

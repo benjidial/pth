@@ -1,9 +1,9 @@
 #include "vbox.h"
-#include "../widget.h"
+#include "../../widget.h"
 #include <list>
 
 /* * * * * * * * * * * * * * *
- * PTH containers/vbox.cpp   *
+ * PTH vbox implementation   *
  * Copyright 2018 Benji Dial *
  * Under MIT license         *
  * * * * * * * * * * * * * * */
