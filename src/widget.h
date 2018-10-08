@@ -12,6 +12,7 @@ namespace pth {
   protected:
     widget(bool focusable, widget *parent)
       : focusable(focusable), parent(parent) { }
+    int x, y, width, height;
 
   public:
     static widget *focus;
@@ -19,9 +20,11 @@ namespace pth {
     bool focusable;
     widget *parent;
 
-    virtual void draw(int x, int y, int width, int height);
+    virtual void set_size(int x, int y, int width, int height);
+    virtual void draw(void);
     virtual void interact(char key);
     virtual void on_focus(void);
+    virtual void on_unfocus(void);
   };
 }
 

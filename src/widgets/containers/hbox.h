@@ -13,11 +13,13 @@
 using std::list;
 
 namespace pth {
-  class hbox : container {
-
+  class hbox : public container {
   public:
     hbox(widget *parent);
-    virtual void draw(int x, int y, int width, int height);
+
+    virtual void add_widget(widget w, float weight);
+
+    virtual void set_size(int x, int y, int width, int height);
   };
 }
 

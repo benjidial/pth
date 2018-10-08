@@ -23,22 +23,37 @@ namespace pth {
       focus = --widgets.end();
   }
 
+  void container::set_size(int x, int y, int width, int height)
+    : widget::set_size(x, y, width, height) {
+    for (widget w : widgets)
+      w.set_size(x, y, width, height);
+  }
+
+  void container::draw(void) {
+    for (widget w : widgets)
+      w.draw();
+  }
+
   void container::interact(char key) {
     if (key == prev) {
+      widget *safe = &*focus;
       while (focus-- != widgets.begin())
         if ((*focus).focusable) {
+          safe->on_unfocus();
           widget::focus = &*focus;
-          (*focus).on_focus();
+          focus->on_focus();
           return;
         }
       focus = widgets.begin();
       parent->interact(prev);
       return;
     } if (key == next || key == 0x41 /*Tab*/) {
+      widget *safe = &*focus;
       while (++focus != widgets.end())
         if ((*focus).focusable) {
+          safe->on_unfocus();
           widget::focus = &*focus;
-          (*focus).on_focus();
+          focus->on_focus();
           return;
         }
       focus--;
@@ -48,8 +63,12 @@ namespace pth {
     parent->interact(key);
   }
 
-  void container::on_focus() {
+  void container::on_focus(void) {
     widget::focus = &*focus;
-    (*focus).on_focus();
+    focus->on_focus();
+  }
+
+  void container::on_unfocus(void) {
+    focus->on_unfocus();
   }
 }

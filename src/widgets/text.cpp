@@ -12,7 +12,7 @@
 namespace pth {
   text(widget *parent, char *text="", int len=0, char color=0x07, bool editable=false)
     : widget(parent, editable), text(text), text_len(len), color(color), editable(editable) { }
-  void widget::draw(int x, int y, int width, int height) {
+  void widget::draw(void) {
     /*FIXME: doesn't handle whitespace other than plain spaces specially*/
     /*FIXME: doesn't handle text that doesn't fit in viewport specially
              (should probably have a vertical scrollbar)*/
@@ -27,7 +27,6 @@ namespace pth {
       print_bytes(curr);
       (curr += width)[0] = safe;
     }
-    fill[width] = '\0';
     print_bytes(fill);
     move_cursor(y_next, x);
     print_bytes(curr);
@@ -35,7 +34,6 @@ namespace pth {
       move_cursor(y_next, x);
       print_bytes(fill);
     }
-    fill[width] = ' ';
   }
 
   void text::set_text(char *text, int len) {
@@ -47,11 +45,20 @@ namespace pth {
     return text;
   }
 
-  void interact(char key) {
+  void text::set_size(x, y, width, height) {
+    int curs = (curs_y - this.y) * this.width + (curs_x - this.x);
+    fill[this.width] = ' ';
+    fill[this.width = width] = '\0';
+    curs_y = (this.y = y) + curs / width;
+    curs_x = (this.x = x) + curs % width;
+    this.height = height;
+  }
+
+  void text::interact(char key) {
     /*TODO: handle navigation keys accordingly, otherwise insert character at cursor*/
   }
 
-  void on_focus(void) {
-    /*TODO: move cursor*/
+  void text::on_focus(void) {
+    move_cursor(y_curs, x_curs);
   }
 }

@@ -13,7 +13,7 @@
 using std::list;
 
 namespace pth {
-  class container : widget {
+  class container : public widget {
   protected:
     list<widget> widgets;
     list<float> widget_weights;
@@ -25,11 +25,13 @@ namespace pth {
 
   public:
     container(widget *parent, char prev, char next);
+    virtual void add_widget(widget w, float weight);
 
-    void add_widget(widget w, float weight);
-    virtual void draw(int x, int y, int width, int height) = 0;
+    virtual void set_size(int x, int y, int width, int height);
+    virtual void draw(void);
     virtual void interact(char key);
-    virtual void on_focus();
+    virtual void on_focus(void);
+    virtual void on_unfocus(void);
   };
 }
 
