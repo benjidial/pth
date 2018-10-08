@@ -1,6 +1,7 @@
 #include "../widget.h"
 #include "text.h"
 #include <p-clib.h>
+#include <cstring>
 
 /* * * * * * * * * * * * * * *
  * PTH text implementation   *
@@ -26,14 +27,15 @@ namespace pth {
       print_bytes(curr);
       (curr += width)[0] = safe;
     }
-    move_cursor(y_next, x);
-    print_bytes("                                                                                " /*80*/);
+    fill[width] = '\0';
+    print_bytes(fill);
     move_cursor(y_next, x);
     print_bytes(curr);
     while (++y_next < y + height) {
       move_cursor(y_next, x);
-      print_bytes("                                                                                " /*80*/);
+      print_bytes(fill);
     }
+    fill[width] = ' ';
   }
 
   void text::set_text(char *text, int len) {

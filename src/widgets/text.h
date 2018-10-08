@@ -13,6 +13,7 @@ namespace pth {
   class text : widget {
     char *text = "";
     int text_len = 0;
+    char *fill = "                                                                                "/*80*/;
 
   public:
     char color = 0x07;
